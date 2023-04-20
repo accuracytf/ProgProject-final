@@ -1,0 +1,9 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Programmering/ProgProject/ProgProject/Content/biran.JPG","C:/Programmering/ProgProject/ProgProject/Content/bin/DesktopGL/biran.png.xnb","TextureProcessor","Texture2DContent",15211,170905,0,2479734
+"C:/Programmering/ProgProject/ProgProject/Content/GrassPlatform.png","C:/Programmering/ProgProject/ProgProject/Content/bin/DesktopGL/GrassPlatform.xnb","TextureProcessor","Texture2DContent",2095,264589,0,0094138
+"C:/Programmering/ProgProject/ProgProject/Content/GrPlatform.png","C:/Programmering/ProgProject/ProgProject/Content/bin/DesktopGL/GrPlatform.xnb","TextureProcessor","Texture2DContent",971,90021,0,0032293
+"C:/Programmering/ProgProject/ProgProject/Content/MossyPlat.png","C:/Programmering/ProgProject/ProgProject/Content/bin/DesktopGL/MossyPlat.xnb","TextureProcessor","Texture2DContent",399705,1870565,0,0477083
+"C:/Programmering/ProgProject/ProgProject/Content/MossyPlatforms.png","C:/Programmering/ProgProject/ProgProject/Content/bin/DesktopGL/MossyPlatforms.xnb","TextureProcessor","Texture2DContent",758630,4350037,0,1019431
+"C:/Programmering/ProgProject/ProgProject/Content/platform1.png","C:/Programmering/ProgProject/ProgProject/Content/bin/DesktopGL/platform1.xnb","TextureProcessor","Texture2DContent",541,2677,0,0019758
+"C:/Programmering/ProgProject/ProgProject/Content/pTexture_Left.png","C:/Programmering/ProgProject/ProgProject/Content/bin/DesktopGL/pTexture_Left.xnb","TextureProcessor","Texture2DContent",1823,9805,0,001788
+"C:/Programmering/ProgProject/ProgProject/Content/pTexture_Right.png","C:/Programmering/ProgProject/ProgProject/Content/bin/DesktopGL/pTexture_Right.xnb","TextureProcessor","Texture2DContent",1799,8989,0,0020913
