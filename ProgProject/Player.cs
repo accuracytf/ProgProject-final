@@ -13,21 +13,24 @@ namespace ProgProject
     public class Player
     {
 
-        public Texture2D playerTexture_Left, playerTexture_Right;
+        public Texture2D playerTexture_Left, playerTexture_Right, jumpTexture_Left, jumpTexture_Right;
         public Vector2 playerPos;
         public Vector2 velocity;
         public Rectangle playerTopRect,playerBotRect;
         public bool isGrounded;
         bool movingLeft;
+        bool chargingJump = false;
         float jumpStrength = 6;
         
 
-        public Player(Texture2D pTexture_Left, Texture2D pTexture_Right, Vector2 position)
+        public Player(Texture2D pTexture_Left, Texture2D pTexture_Right,Texture2D jTexture_Left, Texture2D jTexture_Right, Vector2 position)
         {
-            this.playerTexture_Left = pTexture_Left;
-            this.playerTexture_Right = pTexture_Right;
-            this.playerPos = position;
-            isGrounded = false;
+            playerTexture_Left = pTexture_Left;
+            playerTexture_Right = pTexture_Right;
+            jumpTexture_Left = jTexture_Left;
+            jumpTexture_Right = jTexture_Right;
+            playerPos = position;
+            isGrounded = true;
         }
 
 
@@ -46,11 +49,9 @@ namespace ProgProject
                 {
                     velocity.Y = 1;
                 }
-                isGrounded = intersected;
+                if((playerPos.Y + playerTexture_Right.Height >= 720) == false)
+                    isGrounded = intersected;
             }
-
-            
-           
         }
         public Rectangle GetTopRect()
         {
@@ -67,30 +68,39 @@ namespace ProgProject
             KeyboardState ks = Keyboard.GetState();
             
             playerPos += velocity;
-            velocity.X = 0;
-            if (ks.IsKeyDown(Keys.A))
+            if (isGrounded)
+                velocity.X = 0;
+            Debug.WriteLine(isGrounded);
+            Debug.WriteLine(jumpStrength);
+            //movement
+            if (ks.IsKeyDown(Keys.A) && isGrounded && !chargingJump)
             {
                 velocity.X = -4f;
                 movingLeft = true;
             }
-            if (ks.IsKeyDown(Keys.D))
+            if (ks.IsKeyDown(Keys.D) && isGrounded && !chargingJump)
             {
                 velocity.X = 4f;
                 movingLeft = false;
             }
+            //groundedcheck
             if (playerPos.Y + playerTexture_Right.Height >= 720 && Game1.level == 1)
             {
-                playerPos.Y = 720 - playerTexture_Right.Height;
+                Debug.WriteLine("hej2");
                 isGrounded = true;
+                Debug.WriteLine(isGrounded + "hej");
+                playerPos.Y = 720 - playerTexture_Right.Height;
+                
             }
             if (ks.IsKeyDown(Keys.Space) && isGrounded)
             {
+                chargingJump = true;
                 jumpStrength += 0.195f;
             }
             if (!isGrounded)
             {
-                float i = 1;
-                velocity.Y += 0.52f * i;
+                
+                velocity.Y += 0.52f;
             }
 
 
@@ -100,11 +110,23 @@ namespace ProgProject
             {
                 if (jumpStrength > 6 && !ks.IsKeyDown(Keys.Space))
                 {
-                    if (jumpStrength > 15)
-                        jumpStrength = 15;
+                    chargingJump = false;
+                    Debug.WriteLine("hej");
+                    if (jumpStrength > 17)
+                    {
+                        jumpStrength = 17;
+                    }
                     playerPos.Y -= jumpStrength * 2;
                     velocity.Y = -jumpStrength;
                     isGrounded = false;
+                    if (movingLeft)
+                    {
+                        velocity.X = -4f;
+                    }
+                    if (!movingLeft)
+                    {
+                        velocity.X = 4f;
+                    }
                 }
                 else
                     velocity.Y = 0f;
@@ -131,9 +153,15 @@ namespace ProgProject
         public void Draw(SpriteBatch spriteBatch)
         {
             if (movingLeft)
-                spriteBatch.Draw(playerTexture_Left, playerPos, Color.White);
+                if(!isGrounded)
+                    spriteBatch.Draw(jumpTexture_Left, playerPos, Color.White);
+                else
+                    spriteBatch.Draw(playerTexture_Left, playerPos, Color.White);
             if (!movingLeft)
-                spriteBatch.Draw(playerTexture_Right, playerPos, Color.White);
+                if (!isGrounded)
+                    spriteBatch.Draw(jumpTexture_Right, playerPos, Color.White);
+                else
+                    spriteBatch.Draw(playerTexture_Right, playerPos, Color.White);
 
 
             // TODO: Add your drawing code here

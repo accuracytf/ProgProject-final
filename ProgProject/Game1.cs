@@ -16,7 +16,7 @@ namespace ProgProject
         public List<Platform> platforms2 = new List<Platform>();
         int width, heigth;
         public static int level = 1;
-
+        bool camHasChanged;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -42,21 +42,22 @@ namespace ProgProject
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             
-            player = new(Content.Load<Texture2D>("pTexture_Left"), Content.Load<Texture2D>("pTexture_Right"), new Vector2(50, 720 - Content.Load<Texture2D>("pTexture_Right").Height));
+            //gör spelaren mindre!!!!!
+            player = new(Content.Load<Texture2D>("Character_Left"), Content.Load<Texture2D>("Character_Right"), Content.Load<Texture2D>("Jumping_Left"), Content.Load<Texture2D>("Jumping_Right"), new Vector2(50, 720 - Content.Load<Texture2D>("Character_Right").Height));
             
             
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < 5; i++)
             {
                 Platform p = new(Content.Load<Texture2D>("GrPlatform"),new Vector2(200 + (i*100), 500 - (100* i)));
                 platforms.Add(p);
             }
 
-            platforms2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(200, 500)));
-            platforms2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(300, 600)));
-            platforms2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(400, 700)));
-            platforms2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(500, 800)));
-            platforms2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(600, 900)));
-            platforms2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(600, 900)));
+            platforms2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(200, 200)));
+            platforms2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(300, 300)));
+            platforms2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(400, 400)));
+            platforms2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(700, 600)));
+        
+      
 
             // TODO: use this.Content to load your game content here
         }
@@ -68,7 +69,7 @@ namespace ProgProject
 
             // TODO: Add your update logic here
             Debug.WriteLine(level);
-
+            camHasChanged = false;
             if(level == 1)
             {
                 player.CollisionCheck(platforms);
@@ -77,16 +78,24 @@ namespace ProgProject
             {
                 player.CollisionCheck(platforms2);
             }
-            //hejdawdawdawdawdwadawdw
+            
 
             if (player.playerPos.Y + player.playerTexture_Right.Height < 0)
             {
-                level = 2;
-                player.playerPos.Y = 720- player.playerTexture_Right.Height;
+                if (!camHasChanged)
+                {
+                    level++;
+                    camHasChanged=true;
+                }
+                player.playerPos.Y = 720 - player.playerTexture_Right.Height;
             }
             if (player.playerPos.Y + player.playerTexture_Right.Height > 720 && level != 1)
             {
-                level = 1;
+                if (!camHasChanged)
+                {
+                    level--;
+                    camHasChanged = true;
+                }
                 player.playerPos.Y = 0 - player.playerTexture_Right.Height;
             }
 
