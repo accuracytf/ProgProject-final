@@ -12,13 +12,16 @@ namespace ProgProject
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         Player player;
-        public List<Platform> platlvl1 = new List<Platform>();
-        public List<Platform> platlvl2 = new List<Platform>();
-        public List<Platform> platlvl3 = new List<Platform>();
+        public List<Platform> platlvl1 = new();
+        public List<Platform> platlvl2 = new();
+        public List<Platform> platlvl3 = new();
+        public List<Platform> platlvl4 = new();
+        public List<Platform> platlvl5 = new();
         int width, heigth;
-        public static int level = 1;
-        Sign sign, sign2;
-        Texture2D background;
+        public List<Sign> signs = new();
+        public static int level = 4;
+        Sign sign, sign2, sign3;
+        Texture2D background1, background2, background3, stone;
         bool camHasChanged;
         public static bool showText;
         public static SpriteFont font;
@@ -46,12 +49,14 @@ namespace ProgProject
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            background = Content.Load<Texture2D>("Sunny Cloud Background");
+            background1 = Content.Load<Texture2D>("background_0");
+            background2 = Content.Load<Texture2D>("background_1");
+            background3 = Content.Load<Texture2D>("background_2");
             font = Content.Load<SpriteFont>("Font");
             //gör spelaren mindre!!!!!
             player = new(Content.Load<Texture2D>("Character"), Content.Load<Texture2D>("cJumping"), Content.Load<Texture2D>("cCharging"), new Vector2(50, 720 - Content.Load<Texture2D>("Character").Height));
             
-            
+            //level 1
             for(int i = 0; i < 5; i++)
             {
                 if(i % 2 == 0)
@@ -61,7 +66,7 @@ namespace ProgProject
                 }
                 
             }
-
+            stone = Content.Load<Texture2D>("Stone");
             //level 2
             platlvl2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(200, 200)));
             platlvl2.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(400, 400)));
@@ -72,10 +77,28 @@ namespace ProgProject
             platlvl3.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(500, 150)));
             platlvl3.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(800, 410)));
             platlvl3.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(600, 695)));
+            platlvl3.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(20, -25)));
+
+            //level 4
+            platlvl4.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(50, 695)));
+            platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(300, 460)));
+            platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(500, 460)));
+            platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(800, 460)));
+            platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(1140, 300)));
+            platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(900, 200)));
+            platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(800, -25)));
+
+            //level 5
+            platlvl5.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(800, 690)));
+            platlvl5.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(400, 500)));
 
             //skylt 
             sign = new Sign(Content.Load<Texture2D>("sign2"), new Vector2(520, 150- Content.Load<Texture2D>("sign2").Height));
             sign2 = new Sign(Content.Load<Texture2D>("sign2"), new Vector2(100, 720 - Content.Load<Texture2D>("sign2").Height));
+            sign3 = new Sign(Content.Load<Texture2D>("sign2"), new Vector2(1160, 300 - Content.Load<Texture2D>("sign2").Height));
+            signs.Add(sign);
+            signs.Add(sign2);
+            signs.Add(sign3);
             // TODO: use this.Content to load your game content here
         }
 
@@ -94,6 +117,10 @@ namespace ProgProject
                 player.CollisionCheck(platlvl2);
             else if (level == 3)
                 player.CollisionCheck(platlvl3);
+            else if (level == 4)
+                player.CollisionCheck(platlvl4);
+            else if (level == 5)
+                player.CollisionCheck(platlvl5);
 
 
             //kamera upp ner
@@ -115,11 +142,19 @@ namespace ProgProject
                 }
                 player.playerPos.Y = 0 - player.playerTexture.Height;
             }
-
-            if (player.GetRect().Intersects(sign2.GetRect()) && ks.IsKeyDown(Keys.E) || player.GetRect().Intersects(sign.GetRect()) && ks.IsKeyDown(Keys.E))
-                showText = true;
-            else
-                showText = false;
+            showText = false;
+            if (ks.IsKeyDown(Keys.E))
+            {
+                
+                foreach (Sign s in signs)
+                {
+                    if (player.GetRect().Intersects(s.GetSignRect()))
+                        showText = true;
+                        
+                }
+            }
+            
+            
             player.Update();
 
             
@@ -133,29 +168,43 @@ namespace ProgProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-            player.Draw(_spriteBatch);
+            _spriteBatch.Draw(background1, new Vector2(0, 0), Color.White);
+            _spriteBatch.Draw(background2, new Vector2(0, 0), Color.White);
+            _spriteBatch.Draw(background3, new Vector2(0, 0), Color.White);
+            
             if (level == 1)
             {
                 sign2.Draw(_spriteBatch);
                 foreach (Platform p in platlvl1)
-                    p.Draw(_spriteBatch);
+                    p.Draw(_spriteBatch,stone);
             }
             else if (level == 2)
                 foreach (Platform p in platlvl2)
-                    p.Draw(_spriteBatch);
+                    p.Draw(_spriteBatch,stone);
             else if (level == 3)
             {
                 sign.Draw(_spriteBatch);
                 foreach (Platform p in platlvl3)
-                    p.Draw(_spriteBatch);
+                    p.Draw(_spriteBatch,stone);
             }
-            if(showText)
-                if(level == 1)
-                    Sign.SignText(_spriteBatch,new Vector2 (sign2.signPos.X+55, sign2.signPos.Y + 15), "A - Walk left , D - Walk right, SPACE - Jump, E - Interact");
+            else if (level == 4)
+            {
+                sign3.Draw(_spriteBatch);
+                foreach (Platform p in platlvl4)
+                    p.Draw(_spriteBatch, stone);
+            }
+                
+            else if (level == 5)
+                foreach (Platform p in platlvl5)
+                    p.Draw(_spriteBatch, stone);
+            player.Draw(_spriteBatch);
+            if (showText)
+                if (level == 1)
+                    Sign.SignText(_spriteBatch, new Vector2(sign2.signPos.X + 57, sign2.signPos.Y + 13), "A - Walk left , D - Walk right, SPACE - Jump, E - Interact");
                 else if (level == 3)
-                    Sign.SignText(_spriteBatch, new Vector2(sign.signPos.X -480, sign.signPos.Y + 15), "Congratulations, you made it to the top");
-
+                    Sign.SignText(_spriteBatch, new Vector2(sign.signPos.X - 480, sign.signPos.Y + 15), "Congratulations, you made it to the top");
+                else if (level == 4)
+                    Sign.SignText(_spriteBatch, new Vector2(1160, sign3.signPos.Y-50), " :) ");
             _spriteBatch.End();
             // TODO: Add your drawing code here
 

@@ -19,7 +19,7 @@ namespace ProgProject
             signPos = position;
         }
 
-        public Rectangle GetRect()
+        public Rectangle GetSignRect()
         {
             signRect = new Rectangle((int)signPos.X-50, (int)signPos.Y, (int)(signPos.X + signTexture.Width), signTexture.Height);
             return signRect;

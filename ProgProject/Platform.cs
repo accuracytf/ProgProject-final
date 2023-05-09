@@ -34,10 +34,10 @@ namespace ProgProject
             platformRect = new Rectangle((int)platformPos.X + platformTexture.Width-10, (int)platformPos.Y, 10, platformTexture.Height);
             return platformRect;
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Texture2D deco)
         {
             spriteBatch.Draw(platformTexture, platformPos, Color.White);
-
+            spriteBatch.Draw(deco, new Vector2(platformPos.X+20, platformPos.Y-deco.Height), Color.White);
 
             // TODO: Add your drawing code here
 

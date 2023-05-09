@@ -1,29 +1,25 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProgProject
 {
     public class Player
     {
 
-        public Texture2D playerTexture, jumpTexture,charTexture;
+        public Texture2D playerTexture, jumpTexture, charTexture;
         public Vector2 playerPos;
         public Vector2 velocity;
-        public Rectangle playerTopRect,playerBotRect, playerRect;
+        public Rectangle playerTopRect, playerBotRect, playerRect, playerLeftRect, playerRightRect;
         public bool isGrounded;
         bool movingLeft;
         bool chargingJump = false;
         float jumpStrength = 6;
-        
 
-        public Player(Texture2D pTexture,Texture2D jTexture, Texture2D cTexture, Vector2 position)
+
+        public Player(Texture2D pTexture, Texture2D jTexture, Texture2D cTexture, Vector2 position)
         {
             playerTexture = pTexture;
             jumpTexture = jTexture;
@@ -32,39 +28,36 @@ namespace ProgProject
             isGrounded = true;
         }
 
-
-
         public void CollisionCheck(List<Platform> platlist)
         {
             bool intersected = false;
             bool touchingside = true;
             foreach (Platform p in platlist)
             {
-                
-                
-                
-                if (GetTopRect().Intersects(p.GetRect()))
-                {
-                    velocity.Y = 1;
-                    touchingside = false;
-                }
+
                 //höger vänster
-                if (GetRect().Intersects(p.GetLeftRect()))
+                //getSpecificRect(bool left, bool right, bool top, bool bottom)
+                if (GetRect().Intersects(p.GetLeftRect()) && !GetRect("bottom").Intersects(p.GetLeftRect()))
                 {
                     velocity.X = -1;
                     touchingside = false;
                 }
-                if (GetRect().Intersects(p.GetRightRect()))
+                if (GetRect().Intersects(p.GetRightRect()) && !GetRect("bottom").Intersects(p.GetRightRect()))
                 {
                     velocity.X = 1;
                     touchingside = false;
                 }
 
+                if (GetRect("top").Intersects(p.GetRect()))
+                {
+                    velocity.Y = 1;
+                    touchingside = false;
+                }
 
                 //upp ner
-                if(touchingside)
+                if (touchingside)
                 {
-                    if (GetBotRect().Intersects(p.GetRect()))
+                    if (GetRect("bottom").Intersects(p.GetRect()))
                     {
                         intersected = true;
                         playerPos.Y = p.GetRect().Top - playerTexture.Height + 1;
@@ -72,32 +65,38 @@ namespace ProgProject
                     if ((playerPos.Y + playerTexture.Height >= 720) == false)
                         isGrounded = intersected;
                 }
-                
-                
-                
 
             }
+        }
+#nullable enable
+        public Rectangle GetRect(string? str = null)
+        {
+            Rectangle defPlayerRect = new((int)playerPos.X, (int)playerPos.Y, playerTexture.Width, playerTexture.Height);
+            if (str != null)
+            {
+                switch (str)
+                {
+                    case "top":
+                        return new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTexture.Width, 2);
+                    case "bottom":
+                        return new Rectangle((int)playerPos.X + 5, (int)playerPos.Y + playerTexture.Height + 5, playerTexture.Width - 10, 2);
+                    case "left":
+                        return new Rectangle((int)playerPos.X - 2, (int)playerPos.Y, 2, playerTexture.Height);
+                    case "right":
+                        return new Rectangle((int)playerPos.X + playerTexture.Width + 2, (int)playerPos.Y, 2, playerTexture.Height);
+                    default:
+                        return defPlayerRect;
+                }
+            }
+            else return defPlayerRect;
+        }
 
-        }
-        public Rectangle GetRect()
-        {
-            playerRect = new Rectangle((int)playerPos.X, (int)playerPos.Y , playerTexture.Width, playerTexture.Height);
-            return playerRect;
-        }
-        public Rectangle GetTopRect()
-        {
-            playerTopRect = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTexture.Width, 2);
-            return playerTopRect;
-        }
-        public Rectangle GetBotRect()
-        {
-            playerBotRect = new Rectangle((int)playerPos.X, (int)playerPos.Y + playerTexture.Height-2, playerTexture.Width, 2);
-            return playerBotRect;
-        }
+#nullable disable
+
         public void Update()
         {
             KeyboardState ks = Keyboard.GetState();
-            
+
             playerPos += velocity;
             if (isGrounded)
                 velocity.X = 0;
@@ -119,7 +118,7 @@ namespace ProgProject
             {
                 isGrounded = true;
                 playerPos.Y = 720 - playerTexture.Height;
-                
+
             }
             if (ks.IsKeyDown(Keys.Space) && isGrounded)
             {
@@ -132,7 +131,6 @@ namespace ProgProject
             }
 
 
-            
             //hopp sak
             if (isGrounded)
             {
@@ -169,8 +167,8 @@ namespace ProgProject
             if (playerPos.X < 0)
             {
                 playerPos.X = 0;
-            } 
-            
+            }
+
             if (playerPos.X + playerTexture.Width > 1280)
             {
                 playerPos.X = 1280 - playerTexture.Width;
@@ -180,25 +178,22 @@ namespace ProgProject
         public void Draw(SpriteBatch spriteBatch)
         {
             if (movingLeft)
-                if(!isGrounded)
+                if (!isGrounded)
                     spriteBatch.Draw(jumpTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
-                else if(chargingJump)
-                    spriteBatch.Draw(charTexture, new Vector2(playerPos.X,playerPos.Y+(playerTexture.Height-charTexture.Height)), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                else if (chargingJump)
+                    spriteBatch.Draw(charTexture, new Vector2(playerPos.X, playerPos.Y + (playerTexture.Height - charTexture.Height)), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                 else
                     spriteBatch.Draw(playerTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
             if (!movingLeft)
                 if (!isGrounded)
                     spriteBatch.Draw(jumpTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
-                else if(chargingJump)
+                else if (chargingJump)
                     spriteBatch.Draw(charTexture, new Vector2(playerPos.X, playerPos.Y + (playerTexture.Height - charTexture.Height)), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
                 else
                     spriteBatch.Draw(playerTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
-            
 
             // TODO: Add your drawing code here
 
         }
-
-
     }
 }
