@@ -132,6 +132,5 @@ C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Conte
 C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\sign2.xnb
 C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\Font.xnb
 C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\Sunny Cloud Background.xnb
-C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\cCharging2.xnb
-C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\cCharging.xnb
 C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\cCharging3.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\cCharging.xnb

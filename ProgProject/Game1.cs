@@ -49,7 +49,7 @@ namespace ProgProject
             background = Content.Load<Texture2D>("Sunny Cloud Background");
             font = Content.Load<SpriteFont>("Font");
             //gör spelaren mindre!!!!!
-            player = new(Content.Load<Texture2D>("Character"), Content.Load<Texture2D>("cJumping"), Content.Load<Texture2D>("cCharging3"), new Vector2(50, 720 - Content.Load<Texture2D>("Character").Height));
+            player = new(Content.Load<Texture2D>("Character"), Content.Load<Texture2D>("cJumping"), Content.Load<Texture2D>("cCharging"), new Vector2(50, 720 - Content.Load<Texture2D>("Character").Height));
             
             
             for(int i = 0; i < 5; i++)

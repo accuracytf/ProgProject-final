@@ -37,24 +37,32 @@ namespace ProgProject
         public void CollisionCheck(List<Platform> platlist)
         {
             bool intersected = false;
+            bool touchingside = true;
             foreach (Platform p in platlist)
             {
-                //upp ner
+                
+                
                 
                 if (GetTopRect().Intersects(p.GetRect()))
                 {
                     velocity.Y = 1;
+                    touchingside = false;
                 }
                 //höger vänster
                 if (GetRect().Intersects(p.GetLeftRect()))
                 {
                     velocity.X = -1;
+                    touchingside = false;
                 }
                 if (GetRect().Intersects(p.GetRightRect()))
                 {
                     velocity.X = 1;
+                    touchingside = false;
                 }
-                else
+
+
+                //upp ner
+                if(touchingside)
                 {
                     if (GetBotRect().Intersects(p.GetRect()))
                     {
@@ -66,6 +74,8 @@ namespace ProgProject
                 }
                 
                 
+                
+
             }
 
         }
@@ -107,9 +117,7 @@ namespace ProgProject
             //groundedcheck
             if (playerPos.Y + playerTexture.Height >= 720 && Game1.level == 1)
             {
-                Debug.WriteLine("hej2");
                 isGrounded = true;
-                Debug.WriteLine(isGrounded + "hej");
                 playerPos.Y = 720 - playerTexture.Height;
                 
             }
@@ -175,14 +183,14 @@ namespace ProgProject
                 if(!isGrounded)
                     spriteBatch.Draw(jumpTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
                 else if(chargingJump)
-                    spriteBatch.Draw(charTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(charTexture, new Vector2(playerPos.X,playerPos.Y+(playerTexture.Height-charTexture.Height)), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                 else
                     spriteBatch.Draw(playerTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
             if (!movingLeft)
                 if (!isGrounded)
                     spriteBatch.Draw(jumpTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                 else if(chargingJump)
-                    spriteBatch.Draw(charTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    spriteBatch.Draw(charTexture, new Vector2(playerPos.X, playerPos.Y + (playerTexture.Height - charTexture.Height)), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
                 else
                     spriteBatch.Draw(playerTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
             
