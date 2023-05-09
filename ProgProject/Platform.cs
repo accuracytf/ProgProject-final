@@ -15,13 +15,23 @@ namespace ProgProject
         public Vector2 platformPos;
         public Platform(Texture2D platTexture, Vector2 position)
         {
-            this.platformTexture = platTexture;
-            this.platformPos = position;
+            platformTexture = platTexture;
+            platformPos = position;
         }
 
         public Rectangle GetRect() 
         {
             platformRect = new Rectangle((int)platformPos.X, (int)platformPos.Y-1, platformTexture.Width, platformTexture.Height+1);
+            return platformRect;
+        }
+        public Rectangle GetLeftRect()
+        {
+            platformRect = new Rectangle((int)platformPos.X-1, (int)platformPos.Y, 10, platformTexture.Height);
+            return platformRect;
+        }
+        public Rectangle GetRightRect()
+        {
+            platformRect = new Rectangle((int)platformPos.X + platformTexture.Width-10, (int)platformPos.Y, 10, platformTexture.Height);
             return platformRect;
         }
         public void Draw(SpriteBatch spriteBatch)

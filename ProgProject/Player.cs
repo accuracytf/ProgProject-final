@@ -13,22 +13,21 @@ namespace ProgProject
     public class Player
     {
 
-        public Texture2D playerTexture_Left, playerTexture_Right, jumpTexture_Left, jumpTexture_Right;
+        public Texture2D playerTexture, jumpTexture,charTexture;
         public Vector2 playerPos;
         public Vector2 velocity;
-        public Rectangle playerTopRect,playerBotRect;
+        public Rectangle playerTopRect,playerBotRect, playerRect;
         public bool isGrounded;
         bool movingLeft;
         bool chargingJump = false;
         float jumpStrength = 6;
         
 
-        public Player(Texture2D pTexture_Left, Texture2D pTexture_Right,Texture2D jTexture_Left, Texture2D jTexture_Right, Vector2 position)
+        public Player(Texture2D pTexture,Texture2D jTexture, Texture2D cTexture, Vector2 position)
         {
-            playerTexture_Left = pTexture_Left;
-            playerTexture_Right = pTexture_Right;
-            jumpTexture_Left = jTexture_Left;
-            jumpTexture_Right = jTexture_Right;
+            playerTexture = pTexture;
+            jumpTexture = jTexture;
+            charTexture = cTexture;
             playerPos = position;
             isGrounded = true;
         }
@@ -40,27 +39,49 @@ namespace ProgProject
             bool intersected = false;
             foreach (Platform p in platlist)
             {
-                if (GetBotRect().Intersects(p.GetRect()))
-                {
-                    intersected = true;
-                    playerPos.Y = p.GetRect().Top - playerTexture_Right.Height + 1;
-                }
-                else if (GetTopRect().Intersects(p.GetRect()))
+                //upp ner
+                
+                if (GetTopRect().Intersects(p.GetRect()))
                 {
                     velocity.Y = 1;
                 }
-                if((playerPos.Y + playerTexture_Right.Height >= 720) == false)
-                    isGrounded = intersected;
+                //höger vänster
+                if (GetRect().Intersects(p.GetLeftRect()))
+                {
+                    velocity.X = -1;
+                }
+                if (GetRect().Intersects(p.GetRightRect()))
+                {
+                    velocity.X = 1;
+                }
+                else
+                {
+                    if (GetBotRect().Intersects(p.GetRect()))
+                    {
+                        intersected = true;
+                        playerPos.Y = p.GetRect().Top - playerTexture.Height + 1;
+                    }
+                    if ((playerPos.Y + playerTexture.Height >= 720) == false)
+                        isGrounded = intersected;
+                }
+                
+                
             }
+
+        }
+        public Rectangle GetRect()
+        {
+            playerRect = new Rectangle((int)playerPos.X, (int)playerPos.Y , playerTexture.Width, playerTexture.Height);
+            return playerRect;
         }
         public Rectangle GetTopRect()
         {
-            playerTopRect = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTexture_Right.Width, 2);
+            playerTopRect = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTexture.Width, 2);
             return playerTopRect;
         }
         public Rectangle GetBotRect()
         {
-            playerBotRect = new Rectangle((int)playerPos.X, (int)playerPos.Y + playerTexture_Right.Height-2, playerTexture_Right.Width, 2);
+            playerBotRect = new Rectangle((int)playerPos.X, (int)playerPos.Y + playerTexture.Height-2, playerTexture.Width, 2);
             return playerBotRect;
         }
         public void Update()
@@ -84,22 +105,21 @@ namespace ProgProject
                 movingLeft = false;
             }
             //groundedcheck
-            if (playerPos.Y + playerTexture_Right.Height >= 720 && Game1.level == 1)
+            if (playerPos.Y + playerTexture.Height >= 720 && Game1.level == 1)
             {
                 Debug.WriteLine("hej2");
                 isGrounded = true;
                 Debug.WriteLine(isGrounded + "hej");
-                playerPos.Y = 720 - playerTexture_Right.Height;
+                playerPos.Y = 720 - playerTexture.Height;
                 
             }
             if (ks.IsKeyDown(Keys.Space) && isGrounded)
             {
                 chargingJump = true;
-                jumpStrength += 0.195f;
+                jumpStrength += 0.215f;
             }
             if (!isGrounded)
             {
-                
                 velocity.Y += 0.52f;
             }
 
@@ -111,7 +131,6 @@ namespace ProgProject
                 if (jumpStrength > 6 && !ks.IsKeyDown(Keys.Space))
                 {
                     chargingJump = false;
-                    Debug.WriteLine("hej");
                     if (jumpStrength > 17)
                     {
                         jumpStrength = 17;
@@ -144,9 +163,9 @@ namespace ProgProject
                 playerPos.X = 0;
             } 
             
-            if (playerPos.X + playerTexture_Right.Width > 1280)
+            if (playerPos.X + playerTexture.Width > 1280)
             {
-                playerPos.X = 1280 - playerTexture_Right.Width;
+                playerPos.X = 1280 - playerTexture.Width;
             }
 
         }
@@ -154,15 +173,19 @@ namespace ProgProject
         {
             if (movingLeft)
                 if(!isGrounded)
-                    spriteBatch.Draw(jumpTexture_Left, playerPos, Color.White);
+                    spriteBatch.Draw(jumpTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                else if(chargingJump)
+                    spriteBatch.Draw(charTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                 else
-                    spriteBatch.Draw(playerTexture_Left, playerPos, Color.White);
+                    spriteBatch.Draw(playerTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
             if (!movingLeft)
                 if (!isGrounded)
-                    spriteBatch.Draw(jumpTexture_Right, playerPos, Color.White);
+                    spriteBatch.Draw(jumpTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                else if(chargingJump)
+                    spriteBatch.Draw(charTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
                 else
-                    spriteBatch.Draw(playerTexture_Right, playerPos, Color.White);
-
+                    spriteBatch.Draw(playerTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+            
 
             // TODO: Add your drawing code here
 

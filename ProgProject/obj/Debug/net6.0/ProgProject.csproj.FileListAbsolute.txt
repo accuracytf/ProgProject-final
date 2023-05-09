@@ -101,11 +101,7 @@ C:\Users\milhan\source\repos\ProgProjectGH\ProgProject\obj\Debug\net6.0\ProgProj
 C:\Users\milhan\source\repos\ProgProjectGH\ProgProject\obj\Debug\net6.0\ref\ProgProject.dll
 C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\biran.JPG.png.xnb
 C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\biran.xnb
-C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\GrassPlatform.xnb
 C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\GrPlatform.xnb
-C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\MossyPlat.xnb
-C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\MossyPlatforms.xnb
-C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\platform1.xnb
 C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\bin\Debug\net6.0\ProgProject.exe
 C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\bin\Debug\net6.0\ProgProject.deps.json
 C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\bin\Debug\net6.0\ProgProject.runtimeconfig.json
@@ -131,7 +127,11 @@ C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\obj\Debug\net6.0\refin
 C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\obj\Debug\net6.0\ProgProject.pdb
 C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\obj\Debug\net6.0\ProgProject.genruntimeconfig.cache
 C:\Users\milto\Source\Repos\ProgProject-final\ProgProject\obj\Debug\net6.0\ref\ProgProject.dll
-C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\Character_Left.xnb
-C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\Character_Right.xnb
-C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\Jumping_Left.xnb
-C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\Jumping_Right.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\Character.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\cJumping.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\sign2.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\Font.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\Sunny Cloud Background.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\cCharging2.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\cCharging.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\cCharging3.xnb
