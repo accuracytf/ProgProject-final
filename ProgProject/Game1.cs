@@ -19,7 +19,7 @@ namespace ProgProject
         public List<Platform> platlvl4 = new();
         public List<Platform> platlvl5 = new();
         int width, heigth;
-        public static int level = 3;
+        public static int level = 1;
         Sign sign1, signFinal, sign3;
         Texture2D background1, background2, background3, stone;
         public static SoundEffect jumpEffect;
