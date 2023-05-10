@@ -141,6 +141,7 @@ namespace ProgProject
                     {
                         jumpStrength = 17;
                     }
+                    Game1.jumpEffect.Play(0.1f,0,0);
                     playerPos.Y -= jumpStrength * 2;
                     velocity.Y = -jumpStrength;
                     isGrounded = false;

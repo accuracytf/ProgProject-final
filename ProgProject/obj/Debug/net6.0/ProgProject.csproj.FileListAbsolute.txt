@@ -138,3 +138,5 @@ C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Conte
 C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\background_2.xnb
 C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\image.xnb
 C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\GrPlatformShort.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\jump.xnb
+C:\Users\milto\source\repos\ProgProject-final\ProgProject\bin\Debug\net6.0\Content\Jump1.xnb
