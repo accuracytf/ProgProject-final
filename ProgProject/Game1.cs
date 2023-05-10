@@ -19,7 +19,7 @@ namespace ProgProject
         public List<Platform> platlvl4 = new();
         public List<Platform> platlvl5 = new();
         int width, heigth;
-        public static int level = 1;
+        public static int level = 3;
         Sign sign1, signFinal, sign3;
         Texture2D background1, background2, background3, stone;
         public static SoundEffect jumpEffect;
@@ -83,10 +83,12 @@ namespace ProgProject
             platlvl3.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(500, 150)));
             platlvl3.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(800, 410)));
             platlvl3.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(600, 695)));
-            platlvl3.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(20, -25)));
+            platlvl3.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(70, -25)));
+            platlvl3.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(250, -25)));
 
             //level 4
-            platlvl4.Add(new(Content.Load<Texture2D>("GrPlatform"), new Vector2(50, 695)));
+            platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(70, 695)));
+            platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(250, 695)));
             platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(300, 460)));
             platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(500, 460)));
             platlvl4.Add(new(Content.Load<Texture2D>("GrPlatformShort"), new Vector2(800, 460)));
