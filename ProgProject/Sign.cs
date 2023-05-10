@@ -32,7 +32,7 @@ namespace ProgProject
         {
             spriteBatch.Draw(signTexture, signPos, Color.White);
             if (!Game1.showText)
-                spriteBatch.DrawString(Game1.font, "Hold E ", new Vector2(signPos.X, signPos.Y-30), Color.Black);
+                spriteBatch.DrawString(Game1.font, "Hold E ", new Vector2(signPos.X-3, signPos.Y-30), Color.Black);
             
             // TODO: Add your drawing code here
 

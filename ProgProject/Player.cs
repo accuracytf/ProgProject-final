@@ -50,7 +50,7 @@ namespace ProgProject
 
                 if (GetRect("top").Intersects(p.GetRect()))
                 {
-                    velocity.Y = 1;
+                    velocity.Y = 1.5f;
                     touchingside = false;
                 }
 
