@@ -134,7 +134,7 @@ namespace ProgProject
             //hopp sak
             if (isGrounded)
             {
-                if (jumpStrength > 6 && !ks.IsKeyDown(Keys.Space))
+                if ((jumpStrength >= 17  && ks.IsKeyDown(Keys.Space)) ||  (jumpStrength > 6 && !ks.IsKeyDown(Keys.Space)))
                 {
                     chargingJump = false;
                     if (jumpStrength > 17)
@@ -152,14 +152,10 @@ namespace ProgProject
                     {
                         velocity.X = 4f;
                     }
+                    jumpStrength = 6;
                 }
                 else
                     velocity.Y = 0f;
-            }
-
-            if (!ks.IsKeyDown(Keys.Space))
-            {
-                jumpStrength = 6;
             }
 
             //inte köra ut ur skärmen
