@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "jYPNqLbgLanrS/BEWYU8uBvE14aE7nYHW5ockWGouCSwV2e/BDuqtAlCigzZiY75iDbWR1Zzi3FFPr+Y/nRP1w==",
+  "dgSpecHash": "M2uZ++iDILhIrPD/Eux6Ozmz1wWY94/Rc/3BL42xGRI5iwYxunPvUhqzwFvO6VjIwoy2y9yM3feOr23jLMOi2w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\milto\\source\\repos\\ProgProject-final\\ProgProject\\ProgProject.csproj",
+  "projectFilePath": "C:\\Users\\milhan\\source\\repos\\ProgProjectGH\\ProgProject-final\\ProgProject\\ProgProject.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\milto\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\milto\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    "C:\\Users\\milhan\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\milhan\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
   ],
   "logs": []
 }
