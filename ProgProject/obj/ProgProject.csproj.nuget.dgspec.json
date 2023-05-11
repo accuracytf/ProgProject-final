@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\milhan\\source\\repos\\ProgProjectGH\\ProgProject-final\\ProgProject\\ProgProject.csproj": {}
+    "C:\\Users\\milhan\\source\\repos\\ProgProject-final\\ProgProject\\ProgProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\milhan\\source\\repos\\ProgProjectGH\\ProgProject-final\\ProgProject\\ProgProject.csproj": {
+    "C:\\Users\\milhan\\source\\repos\\ProgProject-final\\ProgProject\\ProgProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\milhan\\source\\repos\\ProgProjectGH\\ProgProject-final\\ProgProject\\ProgProject.csproj",
+        "projectUniqueName": "C:\\Users\\milhan\\source\\repos\\ProgProject-final\\ProgProject\\ProgProject.csproj",
         "projectName": "ProgProject",
-        "projectPath": "C:\\Users\\milhan\\source\\repos\\ProgProjectGH\\ProgProject-final\\ProgProject\\ProgProject.csproj",
+        "projectPath": "C:\\Users\\milhan\\source\\repos\\ProgProject-final\\ProgProject\\ProgProject.csproj",
         "packagesPath": "C:\\Users\\milhan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\milhan\\source\\repos\\ProgProjectGH\\ProgProject-final\\ProgProject\\obj\\",
+        "outputPath": "C:\\Users\\milhan\\source\\repos\\ProgProject-final\\ProgProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -36,6 +36,7 @@ namespace ProgProject
         }
         public void Draw(SpriteBatch spriteBatch, Texture2D deco)
         {
+            //ritar platform + sten
             spriteBatch.Draw(platformTexture, platformPos, Color.White);
             spriteBatch.Draw(deco, new Vector2(platformPos.X+20, platformPos.Y-deco.Height), Color.White);
 

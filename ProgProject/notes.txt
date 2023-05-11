@@ -1,0 +1,20 @@
+﻿#TODO:
+
+
+Bättre skyltar{
+	finare skylt texture
+	pop up text
+}
+NPC{
+	prata med en grabb längst ner
+}
+
+
+#IDEAS:
+
+
+
+#DONE:
+
+
+

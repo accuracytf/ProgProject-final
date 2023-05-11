@@ -14,10 +14,9 @@ namespace ProgProject
         public Vector2 velocity;
         public Rectangle playerTopRect, playerBotRect, playerRect, playerLeftRect, playerRightRect;
         public bool isGrounded;
-        bool movingLeft;
         bool chargingJump = false;
         float jumpStrength = 6;
-
+        SpriteEffects se = SpriteEffects.FlipHorizontally;
 
         public Player(Texture2D pTexture, Texture2D jTexture, Texture2D cTexture, Vector2 position)
         {
@@ -71,6 +70,7 @@ namespace ProgProject
 #nullable enable
         public Rectangle GetRect(string? str = null)
         {
+            //spelarens höger vänster upp ner sida
             Rectangle defPlayerRect = new((int)playerPos.X, (int)playerPos.Y, playerTexture.Width, playerTexture.Height);
             if (str != null)
             {
@@ -100,18 +100,16 @@ namespace ProgProject
             playerPos += velocity;
             if (isGrounded)
                 velocity.X = 0;
-            Debug.WriteLine(isGrounded);
-            Debug.WriteLine(jumpStrength);
             //movement
             if (ks.IsKeyDown(Keys.A) && isGrounded && !chargingJump)
             {
                 velocity.X = -4f;
-                movingLeft = true;
+                se = SpriteEffects.None;
             }
             if (ks.IsKeyDown(Keys.D) && isGrounded && !chargingJump)
             {
                 velocity.X = 4f;
-                movingLeft = false;
+                se = SpriteEffects.FlipHorizontally;
             }
             //groundedcheck
             if (playerPos.Y + playerTexture.Height >= 720 && Game1.level == 1)
@@ -120,6 +118,7 @@ namespace ProgProject
                 playerPos.Y = 720 - playerTexture.Height;
 
             }
+            //håll in space för att charga hoppet
             if (ks.IsKeyDown(Keys.Space) && isGrounded)
             {
                 chargingJump = true;
@@ -141,15 +140,16 @@ namespace ProgProject
                     {
                         jumpStrength = 17;
                     }
+                    //soundeffect
                     Game1.jumpEffect.Play(0.1f,0,0);
                     playerPos.Y -= jumpStrength * 2;
                     velocity.Y = -jumpStrength;
                     isGrounded = false;
-                    if (movingLeft)
+                    if (se == SpriteEffects.None)
                     {
                         velocity.X = -4f;
                     }
-                    if (!movingLeft)
+                    if (se == SpriteEffects.FlipHorizontally)
                     {
                         velocity.X = 4f;
                     }
@@ -174,20 +174,14 @@ namespace ProgProject
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (movingLeft)
-                if (!isGrounded)
-                    spriteBatch.Draw(jumpTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
-                else if (chargingJump)
-                    spriteBatch.Draw(charTexture, new Vector2(playerPos.X, playerPos.Y + (playerTexture.Height - charTexture.Height)), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
-                else
-                    spriteBatch.Draw(playerTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
-            if (!movingLeft)
-                if (!isGrounded)
-                    spriteBatch.Draw(jumpTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
-                else if (chargingJump)
-                    spriteBatch.Draw(charTexture, new Vector2(playerPos.X, playerPos.Y + (playerTexture.Height - charTexture.Height)), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
-                else
-                    spriteBatch.Draw(playerTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+            
+            if (!isGrounded)
+                spriteBatch.Draw(jumpTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, se, 0);
+            else if (chargingJump)
+                spriteBatch.Draw(charTexture, new Vector2(playerPos.X, playerPos.Y + (playerTexture.Height - charTexture.Height)), null, Color.White, 0, Vector2.Zero, 1, se, 0);
+            else
+                spriteBatch.Draw(playerTexture, playerPos, null, Color.White, 0, Vector2.Zero, 1, se, 0);
+            
 
             // TODO: Add your drawing code here
 

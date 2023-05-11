@@ -102,7 +102,7 @@ namespace ProgProject
 
             //skylt 
             sign1 = new Sign(Content.Load<Texture2D>("sign2"), new Vector2(100, 720 - Content.Load<Texture2D>("sign2").Height));
-            signFinal = new Sign(Content.Load<Texture2D>("sign2"), new Vector2(520, 150- Content.Load<Texture2D>("sign2").Height));
+            signFinal = new Sign(Content.Load<Texture2D>("sign2"), new Vector2(520, 500- Content.Load<Texture2D>("sign2").Height));
             sign3 = new Sign(Content.Load<Texture2D>("sign2"), new Vector2(1010, 300 - Content.Load<Texture2D>("sign2").Height));
            
             // TODO: use this.Content to load your game content here
@@ -115,7 +115,6 @@ namespace ProgProject
                 Exit();
 
             // TODO: Add your update logic here
-            Debug.WriteLine(level);
             camHasChanged = false;
             if(level == 1)
                 player.CollisionCheck(platlvl1);
@@ -149,6 +148,8 @@ namespace ProgProject
                 player.playerPos.Y = 0 - player.playerTexture.Height;
             }
             showText = false;
+
+            //hold e vid skylt = visa text
             if (ks.IsKeyDown(Keys.E))
             {
                 if (level==1)
@@ -163,7 +164,6 @@ namespace ProgProject
                         showText = true;
 
             }
-            Debug.WriteLine(player.GetRect().Intersects(signFinal.GetSignRect()));
             
             player.Update();
 
@@ -178,10 +178,17 @@ namespace ProgProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
+            //bakgrund
             _spriteBatch.Draw(background1, new Vector2(0, 0), Color.White);
-            _spriteBatch.Draw(background2, new Vector2(0, 0), Color.White);
-            _spriteBatch.Draw(background3, new Vector2(0, 0), Color.White);
+            //speciell bakgrund för lvl 1
+            if(level == 1)
+            {
+                _spriteBatch.Draw(background2, new Vector2(0, 0), Color.White);
+                _spriteBatch.Draw(background3, new Vector2(0, 0), Color.White);
+            }
             
+            
+            //level draw + sign draw beronde på lvl
             if (level == 1)
             {
                 sign1.Draw(_spriteBatch);
@@ -194,24 +201,21 @@ namespace ProgProject
             else if (level == 3)
                 foreach (Platform p in platlvl3)
                     p.Draw(_spriteBatch, stone);
-           
-
             else if (level == 4)
             {
                 sign3.Draw(_spriteBatch);
                 foreach (Platform p in platlvl4)
                     p.Draw(_spriteBatch, stone);
             }
-            
-
             else if (level == 5)
             {
                 signFinal.Draw(_spriteBatch);
                 foreach (Platform p in platlvl5)
                     p.Draw(_spriteBatch, stone);
             }
-                
+             
             player.Draw(_spriteBatch);
+            //skylt text
             if (showText)
                 if (level == 1)
                     Sign.SignText(_spriteBatch, new Vector2(sign1.signPos.X + 57, sign1.signPos.Y + 13), "A - Walk left , D - Walk right, SPACE - Jump, E - Interact");
