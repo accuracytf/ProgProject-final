@@ -1,6 +1,8 @@
 ﻿#TODO:
 Fallen distance
 
+Walking fucking animation
+
 Bättre skyltar{
 	finare skylt texture
 	pop up text
