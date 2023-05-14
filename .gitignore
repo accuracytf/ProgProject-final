@@ -3,6 +3,7 @@
 *.aeproperties
 
 .vs/
+.vs\
 
 *.tmp
 

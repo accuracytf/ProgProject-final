@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace ProgProject
@@ -11,21 +12,26 @@ namespace ProgProject
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         Player player;
+
         public List<Platform> platlvl1 = new();
         public List<Platform> platlvl2 = new();
         public List<Platform> platlvl3 = new();
         public List<Platform> platlvl4 = new();
         public List<Platform> platlvl5 = new();
-        int width, heigth;
-        public static int level = 1;
+
         Sign sign1, signFinal, sign3;
         Texture2D background1, background2, background3, stone;
+
         public static SoundEffect jumpEffect;
         public static SoundEffect landingEffect;
         public static SoundEffect hitHeadEffect;
+        public static SpriteFont font;
+
         bool camHasChanged;
         public static bool showText;
-        public static SpriteFont font;
+        int width, heigth;
+        public static int level = 4;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -155,14 +161,14 @@ namespace ProgProject
             if (ks.IsKeyDown(Keys.E))
             {
                 if (level==1)
-                    if (player.GetRect().Intersects(sign1.GetSignRect()))
+                    if(GetDistanceToSign(sign1.signPos, 300f, sign1, player))
                         showText = true;
                 
                 if (level == 4)
-                    if (player.GetRect().Intersects(sign3.GetSignRect()))
+                    if(GetDistanceToSign(sign3.signPos, 0f, sign3, player))
                         showText = true;
                 if (level == 5)
-                    if (player.GetRect().Intersects(signFinal.GetSignRect()))
+                    if(GetDistanceToSign(signFinal.signPos, 50f, signFinal, player))
                         showText = true;
 
             }
@@ -229,6 +235,18 @@ namespace ProgProject
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        public static bool GetDistanceToSign(Vector2 pos, float minDistance, Sign sign, Player player)
+        {
+            float a = Math.Abs(pos.X - player.playerPos.X);
+            float b = Math.Abs(pos.Y - player.playerPos.Y);
+            float distance = (float)Math.Sqrt(a * a + b * b);
+
+            if (minDistance == 0f)
+                return sign.GetSignRect().Intersects(player.GetRect());
+
+            return (distance < minDistance);
         }
     }
 }
