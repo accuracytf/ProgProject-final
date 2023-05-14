@@ -3,9 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Runtime.ExceptionServices;
 
 namespace ProgProject
 {
@@ -24,7 +21,6 @@ namespace ProgProject
 
         bool chargingJump = false;
         float jumpStrength = 6;
-
 
         Random random = new Random();
 
