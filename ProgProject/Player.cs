@@ -156,13 +156,11 @@ namespace ProgProject
                 }
             }
 
-
             if (!isGrounded)
             {
                 velocity.Y += 0.52f;
                 isFalling = true;
             }
-
 
             //hopp sak
             if (isGrounded)
