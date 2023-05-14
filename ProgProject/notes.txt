@@ -1,5 +1,5 @@
 ﻿#TODO:
-
+Fallen distance
 
 Bättre skyltar{
 	finare skylt texture
@@ -8,6 +8,10 @@ Bättre skyltar{
 NPC{
 	prata med en grabb längst ner
 }
+
+
+#IN PROGRESS
+Sound effect
 
 
 #IDEAS:

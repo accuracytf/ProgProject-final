@@ -23,6 +23,8 @@ namespace ProgProject
         Sign sign1, signFinal, sign3;
         Texture2D background1, background2, background3, stone;
         public static SoundEffect jumpEffect;
+        public static SoundEffect landingEffect;
+        public static SoundEffect hitHeadEffect;
         bool camHasChanged;
         public static bool showText;
         public static SpriteFont font;
@@ -58,6 +60,8 @@ namespace ProgProject
             font = Content.Load<SpriteFont>("Font");
             //soundfx
             jumpEffect = Content.Load<SoundEffect>("Jump1");
+            landingEffect = Content.Load<SoundEffect>("Landing");
+            hitHeadEffect = Content.Load<SoundEffect>("HeadBonk");
 
             //player character
             player = new(Content.Load<Texture2D>("Character"), Content.Load<Texture2D>("cJumping"), Content.Load<Texture2D>("cCharging"), new Vector2(50, 720 - Content.Load<Texture2D>("Character").Height));

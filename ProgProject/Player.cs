@@ -1,8 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.ExceptionServices;
 
 namespace ProgProject
 {
@@ -14,8 +17,17 @@ namespace ProgProject
         public Vector2 velocity;
         public Rectangle playerTopRect, playerBotRect, playerRect, playerLeftRect, playerRightRect;
         public bool isGrounded;
+
+        public bool isFalling = false;
+        public bool hasHitHead = false;
+        public bool hasFallen = false;
+
         bool chargingJump = false;
         float jumpStrength = 6;
+
+
+        Random random = new Random();
+
         SpriteEffects se = SpriteEffects.FlipHorizontally;
 
         public Player(Texture2D pTexture, Texture2D jTexture, Texture2D cTexture, Vector2 position)
@@ -51,6 +63,11 @@ namespace ProgProject
                 {
                     velocity.Y = 1.5f;
                     touchingside = false;
+                    if (!hasHitHead)
+                    {
+                        Game1.hitHeadEffect.Play(0.03f, 0, 0);
+                        hasHitHead = true;
+                    }
                 }
 
                 //upp ner
@@ -99,7 +116,10 @@ namespace ProgProject
 
             playerPos += velocity;
             if (isGrounded)
+            {
                 velocity.X = 0;
+                hasHitHead = false;
+            }
             //movement
             if (ks.IsKeyDown(Keys.A) && isGrounded && !chargingJump)
             {
@@ -115,6 +135,7 @@ namespace ProgProject
             if (playerPos.Y + playerTexture.Height >= 720 && Game1.level == 1)
             {
                 isGrounded = true;
+                hasHitHead = false;
                 playerPos.Y = 720 - playerTexture.Height;
 
             }
@@ -124,9 +145,22 @@ namespace ProgProject
                 chargingJump = true;
                 jumpStrength += 0.215f;
             }
+
+            if (isFalling && isGrounded)
+            {
+                if (!hasFallen)
+                {
+                    Game1.landingEffect.Play(0.05f, (float)random.NextDouble(), (float)random.NextDouble());
+                    isFalling = false;
+                    hasFallen = false;
+                }
+            }
+
+
             if (!isGrounded)
             {
                 velocity.Y += 0.52f;
+                isFalling = true;
             }
 
 

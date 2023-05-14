@@ -102,23 +102,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\milhan\\.nuget\\packages\\": {},
+    "C:\\Users\\Rwy\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\milhan\\Source\\Repos\\ProgProject-final\\ProgProject\\ProgProject.csproj",
+      "projectUniqueName": "Z:\\Accuracytf\\JumpKing\\ProgProject-final\\ProgProject\\ProgProject.csproj",
       "projectName": "ProgProject",
-      "projectPath": "C:\\Users\\milhan\\Source\\Repos\\ProgProject-final\\ProgProject\\ProgProject.csproj",
-      "packagesPath": "C:\\Users\\milhan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\milhan\\Source\\Repos\\ProgProject-final\\ProgProject\\obj\\",
+      "projectPath": "Z:\\Accuracytf\\JumpKing\\ProgProject-final\\ProgProject\\ProgProject.csproj",
+      "packagesPath": "C:\\Users\\Rwy\\.nuget\\packages\\",
+      "outputPath": "Z:\\Accuracytf\\JumpKing\\ProgProject-final\\ProgProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\milhan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Rwy\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -127,6 +127,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

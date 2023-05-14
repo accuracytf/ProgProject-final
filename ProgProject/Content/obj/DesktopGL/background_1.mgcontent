@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/milhan/source/repos/ProgProject-final/ProgProject/Content/background_1.png</SourceFile>
-  <SourceTime>2023-05-11T08:24:53.2278776+02:00</SourceTime>
-  <DestFile>C:/Users/milhan/source/repos/ProgProject-final/ProgProject/Content/bin/DesktopGL/background_1.xnb</DestFile>
-  <DestTime>2023-05-11T14:23:26.1586534+02:00</DestTime>
+  <SourceFile>Z:/Accuracytf/JumpKing/ProgProject-final/ProgProject/Content/background_1.png</SourceFile>
+  <SourceTime>2023-05-14T15:45:04.7360005+02:00</SourceTime>
+  <DestFile>Z:/Accuracytf/JumpKing/ProgProject-final/ProgProject/Content/bin/DesktopGL/background_1.xnb</DestFile>
+  <DestTime>2023-05-14T16:32:11.4542963+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -116,11 +116,29 @@
 /processorParam:TextureFormat=Color
 /build:GrPlatformShort.png
 
+#begin HeadBonk.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:HeadBonk.wav
+
+#begin HeadBonk.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:HeadBonk.wav
+
 #begin Jump1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Jump1.wav
+
+#begin Landing.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Landing.wav
 
 #begin sign2.png
 /importer:TextureImporter
