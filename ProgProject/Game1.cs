@@ -11,7 +11,7 @@ namespace ProgProject
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        Player player;
+        public static Player player;
 
         public List<Platform> platlvl1 = new();
         public List<Platform> platlvl2 = new();
@@ -21,6 +21,8 @@ namespace ProgProject
 
         Sign sign1, signFinal, sign3;
         Texture2D background1, background2, background3, stone;
+
+        DialogueSign ds;
 
         public static SoundEffect jumpEffect;
         public static SoundEffect landingEffect;
@@ -112,7 +114,10 @@ namespace ProgProject
             sign1 = new Sign(Content.Load<Texture2D>("sign2"), new Vector2(100, 720 - Content.Load<Texture2D>("sign2").Height));
             signFinal = new Sign(Content.Load<Texture2D>("sign2"), new Vector2(520, 500- Content.Load<Texture2D>("sign2").Height));
             sign3 = new Sign(Content.Load<Texture2D>("sign2"), new Vector2(1010, 300 - Content.Load<Texture2D>("sign2").Height));
-           
+
+
+            //Dialouge sign
+            ds = new DialogueSign(new Vector2(270, 720), new string[] { "Welcome, To Dis game.","Get to the top and be rewarded with porn.", "Random text 1", "Random text 2" }, 200f, 350f, 1);
             // TODO: use this.Content to load your game content here
         }
 
@@ -175,7 +180,7 @@ namespace ProgProject
             
             player.Update();
 
-            
+            ds.Update();
             
             base.Update(gameTime);
         }
@@ -231,6 +236,10 @@ namespace ProgProject
                     Sign.SignText(_spriteBatch, new Vector2(sign3.signPos.X+5, sign3.signPos.Y-50), " :) ");
                 else if (level == 5)
                     Sign.SignText(_spriteBatch, new Vector2(signFinal.signPos.X - 480, signFinal.signPos.Y + 15), "Congratulations, you made it to the top");
+
+
+            ds.Draw(_spriteBatch);
+            
             _spriteBatch.End();
             // TODO: Add your drawing code here
 
